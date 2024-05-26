@@ -5,10 +5,13 @@ import '../../node_modules/katex/dist/katex.min.css';
 import Latex from "react-latex-next";
 import "./globals.css"
 import { useState, useEffect } from "react";
-import { generateText } from "./actions";
+import OpenAI from "openai";
 
 import generatePDF from '../components/pdfGenerator';
 
+const openai = new OpenAI({
+  apiKey: "sk-proj-5ZAGiZf23z5tjNFwSY1nT3BlbkFJCaSi71wvZ6U6j7nivAAf", dangerouslyAllowBrowser: true
+})
 
 export default function Chat() {
   const [title, updTitle] = useState('');
@@ -19,8 +22,6 @@ export default function Chat() {
   const [explanation, updExplanation] = useState('');
   const [loading, setLoading] = useState(true);
   const [pdfUrl, setPdfUrl] = useState('');
-
-
 
   const handleGeneratePdf = async () => {
     const pdfBytes = await generatePDF(
@@ -42,7 +43,30 @@ export default function Chat() {
     e.preventDefault();
     setPdfUrl('');
     let idea = e.target.elements.idea.value;
-    const res = await generateText(idea);
+    const typeOfPerson = "You are a bot that will generate competitive programming problem statements with a bit of story in them. "
+      + "Do not talk like you are having a conversation. ";
+    const prompt = "You are given an idea of a competitive programming problem. The idea is: " + idea + ". "
+      + "You have to write a problem statement with a bit of story in it in LaTex. Please return your response in JSON format. Replace all `≤` with `<=`\n"
+      + "["
+      + "`title` : `Create a title for the problem`,"
+      + "`legend` : `Create a legend (story) for the problem.`,"
+      + "`input` : `Input for the problem.`,"
+      + "`output` : `Output for the problem`,"
+      + "`example` : {`input` : `text of numbers for the problem.`, `output` : `text the answer for the input.`},"
+      + "`explanation` : `Explanation of the example for the problem`"
+      + "].";
+    const completion = await openai.chat.completions.create(
+      {
+        model: "gpt-3.5-turbo",
+        messages: [
+          { "role": "system", "content": typeOfPerson },
+          { "role": "user", "content": prompt }
+        ],
+        response_format: { "type": "json_object" }
+      }
+    )
+    const res = JSON.parse(completion.choices[0].message.content);
+
     updTitle(res.title);
     updLegend(res.legend);
     updInput(res.input);
@@ -149,8 +173,8 @@ export default function Chat() {
           </div>
           <div className="col-6 outer-col">
             <div className="row inner-col-input" style={{ position: "relative" }}>
-              <div className="col-6" style={{ position: "absolute" }} > Explanation of the example</div>
-              <div className="col-6" style={{ position: "absolute", left: "90%" }}><button onClick={(e) => { copyText(e, explanation) }} className="copy-button">Copy</button></div>
+              <div className="col-9" style={{ position: "absolute" }} > Explanation of the example</div>
+              <div className="col-3" style={{ position: "absolute", left: "90%" }}><button onClick={(e) => { copyText(e, explanation) }} className="copy-button">Copy</button></div>
             </div>
             <div className="row inner-col-text">
               <Latex>
