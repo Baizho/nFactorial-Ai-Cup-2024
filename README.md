@@ -1,11 +1,11 @@
 # nFactorial-Ai-Cup-2024
 Fork this repository and build nFactorial Ai Cup 2024 projects 
 
-## < Your Name >
+## < Nurmyrza Baizhanov >
 
-## < Your App's Name >
+## < DevState >
 
-## < Your App's description, technical considerations, etc. >
+## < Give the AI an idea for a competitive programming problem. Watch it generate the problems title, statement, input, output, example and an explanation for the given example Download a pdf which contains everyting together>
 
 
 ## Typeform to submit:
