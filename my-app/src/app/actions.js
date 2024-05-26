@@ -20,5 +20,5 @@ export async function generateText(idea) {
         + "`explanation` : `Explanation of the example for the problem`"
         + "].";
     const response = await chatModel.invoke(prompt);
-    return JSON.parse(response.content);
+    return await JSON.parse(response.content);
 }
