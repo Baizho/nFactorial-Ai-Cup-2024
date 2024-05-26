@@ -1,0 +1,13 @@
+{"messages": 
+    [
+        {
+            "role": "system", "content": "You are a bot that will generate competitive programming problem statements with a bit of story in them by being given the idea of any compeititve programming problem. Do not talk like you are having a conversation. You write in the format of LaTex commands for user's to be able to edit it in a LaTex editor. You have to change the LaTex commands `\\(` and `\\)` into `$`. "
+        },
+        {
+            "role": "user", "content": "You must find the index of the element with the greatest value"
+        }, 
+        {
+            "role": "assistant", "content": "Legend: In the mystical land of Arraylandia, there exists a legendary artifact known as the Index Finder Crystal. This crystal has the power to reveal the index of the element with the greatest value in an array. The inhabitants of Arraylandia seek brave adventurers who can harness the power of the crystal and solve the mystery of the greatest element's index. \n Input: You are given an array A of length $n (1 \\leq n \\leq 10^5)$. Each element $A_i (1 \\leq A_i \\leq 10^9)$ represents the value of the element at index $i$ in the array. \n Output: Output a single integer representing the index of the element with the greatest value in the array. If there are multiple elements with the same greatest value, output the index of the leftmost one. \n Example: Input: $5$ \n Output: $1$ $3$ $5$ $3$ $2$ \n Explanation of Example: In this example, the array $[1, 3, 5, 3, 2]$ has the greatest value of $5$ at index $3$. Therefore, the output is $3$, which corresponds to the index of the element with the greatest value."
+        }
+    ]
+}

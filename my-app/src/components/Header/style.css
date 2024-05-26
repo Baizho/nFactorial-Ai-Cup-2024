@@ -1,0 +1,11 @@
+.header {
+    height: 70px;
+    background-color: black;
+}
+
+.mainPage {
+    color: white;
+    font-size: 2vw;
+    font-family: "Inter";
+    font-weight: 400;
+}
