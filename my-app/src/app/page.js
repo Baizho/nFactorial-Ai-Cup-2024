@@ -10,7 +10,7 @@ import OpenAI from "openai";
 import generatePDF from '../components/pdfGenerator';
 
 const openai = new OpenAI({
-  apiKey: "sk-proj-F4JNIICLY78e7TG2e3ieT3BlbkFJOnWB8N0fDbukHV8kcZRe", dangerouslyAllowBrowser: true
+  apiKey: "sk-proj-PICYqOEk2I7K5oExbgz5T3BlbkFJBlDIFloxx43PEEwpmups", dangerouslyAllowBrowser: true
 })
 
 export default function Chat() {
