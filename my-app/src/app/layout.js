@@ -8,7 +8,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <title>DevState</title>
-      <body style={{ backgroundColor: "darkblue" }}>
+      <body style={{ backgroundColor: "lightblue" }}>
         <Header />
         {children}
       </body>
